@@ -224,6 +224,22 @@ class LoadModel {
     });
   }
 
+  _LoadModel2() {
+  const loader = new GLTFLoader();
+  loader.load('./assets/Trees/scene.gltf', (gltf) => {
+    gltf.scene.traverse(c => {
+      c.castShadow = true;
+    });
+
+    //set position and scale
+    var mesh = gltf.scene;
+    mesh.position.set(30, 0, 0);
+    mesh.scale.set(.25, .25, .25);
+
+    this._scene.add(gltf.scene);
+  });
+}
+
   _OnWindowResize() {
     this._camera.aspect = window.innerWidth / window.innerHeight;
     this._camera.updateProjectionMatrix();
